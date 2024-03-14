@@ -1,6 +1,6 @@
 #app/forms.py
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, IntegerField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, IntegerField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from app.models import User
 
@@ -56,6 +56,6 @@ class SnackForm(FlaskForm):
     submit = SubmitField('Add Snack')
 
 class RatingForm(FlaskForm):
-    rating = IntegerField('Rating', validators=[DataRequired()])
+    rating = SelectField('Rating', choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
     comment = TextAreaField('Comment', validators=[Length(min=0, max=140)])
     submit = SubmitField('Submit Rating')

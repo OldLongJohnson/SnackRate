@@ -15,7 +15,7 @@
     {{ form.hidden_tag() }}
     <div class="form-group">
         {{ form.rating.label(class="form-control-label") }}
-        {{ form.rating(class="form-control") }}
+        {{ form.rating(class="form-control") }}  <!-- Dies erzeugt ein Dropdown-Menü für die Bewertung -->
         {% if form.rating.errors %}
         {% for error in form.rating.errors %}
         <span style="color: red;">[{{ error }}]</span>
