@@ -1,4 +1,4 @@
-2024-03-14 16:33:22,311 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+2024-03-14 17:54:38,432 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -20,18 +20,26 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 2, in top-level template code
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 1, in top-level template code
     {% extends "base.html" %}
-  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 20, in top-level template code
-    <a href="{{ url_for('search') }}">Search</a>
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1697, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1686, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 950, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'search'. Did you mean 'user' instead?
-2024-03-14 16:33:23,030 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 53, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in block 'app_content'
+    {{ wtf.quick_form(form) }}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'wtf' is undefined
+2024-03-14 17:54:38,455 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -53,18 +61,26 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 2, in top-level template code
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 1, in top-level template code
     {% extends "base.html" %}
-  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 20, in top-level template code
-    <a href="{{ url_for('search') }}">Search</a>
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1697, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1686, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 950, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'search'. Did you mean 'user' instead?
-2024-03-14 16:33:23,227 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 53, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in block 'app_content'
+    {{ wtf.quick_form(form) }}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'wtf' is undefined
+2024-03-14 17:54:39,587 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -86,16 +102,22 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 2, in top-level template code
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 1, in top-level template code
     {% extends "base.html" %}
-  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 20, in top-level template code
-    <a href="{{ url_for('search') }}">Search</a>
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1697, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1686, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 950, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'search'. Did you mean 'user' instead?
-2024-03-14 16:33:37,527 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
-2024-03-14 16:37:53,458 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 53, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in block 'app_content'
+    {{ wtf.quick_form(form) }}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'wtf' is undefined

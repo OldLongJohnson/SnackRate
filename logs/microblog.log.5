@@ -1,4 +1,4 @@
-2024-03-09 14:42:25,596 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+2024-03-14 16:33:22,311 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -10,10 +10,28 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 24, in index
-    page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-KeyError: 'POSTS_PER_PAGE'
-2024-03-09 14:42:26,596 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
+    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
+    rv = template.render(context)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 20, in top-level template code
+    <a href="{{ url_for('search') }}">Search</a>
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1697, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1686, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 950, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'search'. Did you mean 'user' instead?
+2024-03-14 16:33:23,030 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -25,10 +43,28 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 24, in index
-    page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-KeyError: 'POSTS_PER_PAGE'
-2024-03-09 14:42:28,711 ERROR: Exception on /explore [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
+    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
+    rv = template.render(context)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 20, in top-level template code
+    <a href="{{ url_for('search') }}">Search</a>
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1697, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1686, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 950, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'search'. Did you mean 'user' instead?
+2024-03-14 16:33:23,227 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -40,84 +76,26 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 137, in explore
-    page = request.args('page', 1, type=int)
-TypeError: 'ImmutableMultiDict' object is not callable
-2024-03-09 14:44:01,248 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
-2024-03-09 17:18:40,458 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
-2024-03-09 17:19:21,942 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 24, in index
-    page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-KeyError: 'POSTS_PER_PAGE'
-2024-03-09 17:19:23,827 ERROR: Exception on /explore [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 137, in explore
-    page = request.args('page', 1, type=int)
-TypeError: 'ImmutableMultiDict' object is not callable
-2024-03-09 17:19:33,038 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 24, in index
-    page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-KeyError: 'POSTS_PER_PAGE'
-2024-03-09 17:19:34,460 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 24, in index
-    page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-KeyError: 'POSTS_PER_PAGE'
-2024-03-14 16:08:30,118 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
-2024-03-14 16:10:56,750 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 24, in index
-    page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-KeyError: 'POSTS_PER_PAGE'
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
+    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
+    rv = template.render(context)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 20, in top-level template code
+    <a href="{{ url_for('search') }}">Search</a>
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1697, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1686, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 950, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'search'. Did you mean 'user' instead?
+2024-03-14 16:33:37,527 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
+2024-03-14 16:37:53,458 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
