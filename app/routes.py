@@ -149,7 +149,7 @@ def snack(snack_id):
     snack = Snack.query.get_or_404(snack_id)
     form = RatingForm()
     if form.validate_on_submit():
-        rating = Rating(rating=form.rating.data, comment=form.comment.data, rater=current_user, snack=snack)
+        rating = Rating(rating=form.rating.data, comment=form.comment.data, user_id=current_user.id, snack_id=snack.id)
         db.session.add(rating)
         db.session.commit()
         flash('Your rating has been added!')

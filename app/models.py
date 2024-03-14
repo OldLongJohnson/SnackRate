@@ -46,8 +46,8 @@ class Rating(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     snack_id = db.Column(db.Integer, db.ForeignKey('snack.id'))
 
-    def __repr__(self):
-        return f'<Rating {self.rating} for Snack {self.snack_id}>'
+    user = db.relationship('User')
+    snack = db.relationship('Snack')
 
 @login.user_loader
 def load_user(id):

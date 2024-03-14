@@ -110,3 +110,4 @@ Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/decl_base.py", line 2134, in _declarative_constructor
     raise TypeError(
 TypeError: 'snack' is an invalid keyword argument for Rating
+2024-03-14 19:05:49,978 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
