@@ -42,3 +42,7 @@ Traceback (most recent call last):
     raise TemplateNotFound(template)
 jinja2.exceptions.TemplateNotFound: _post.html
 2024-03-14 17:57:44,197 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:06:21,459 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:06:51,110 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:08:24,229 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:18:45,781 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
