@@ -1,0 +1,19 @@
+<!-- app/templates/explore.html -->
+{% extends "base.html" %}
+{% block app_content %}
+<h2>Explore Snacks</h2>
+<ul>
+    {% for snack in snacks %}
+    <li>
+        <a href="{{ url_for('snack', snack_id=snack.id) }}">{{ snack.name }}</a>
+        - Submitted by {{ snack.author.username }} on {{ snack.timestamp }}
+    </li>
+    {% endfor %}
+</ul>
+{% if prev_url %}
+    <a href="{{ prev_url }}">Previous</a>
+{% endif %}
+{% if next_url %}
+    <a href="{{ next_url }}">Next</a>
+{% endif %}
+{% endblock %}

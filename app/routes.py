@@ -1,32 +1,22 @@
 # app/routes.py
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
-from app.models import User, Post
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm, SnackForm, RatingForm
+from app.models import User, Snack, Rating
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from datetime import datetime
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
 @login_required
 def index():
-    form =PostForm()
-    if form.validate_on_submit():
-        post =Post(body=form.post.data, author=current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post is now live!')
-        return redirect(url_for('index'))
     page = request.args.get('page', 1, type=int)
-    # posts = current_user.followed_posts().all()
-    posts = current_user.followed_posts().paginate(
-        page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-    next_url = url_for('index', page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('index', page=posts.prev_num) \
-        if posts.has_prev else None
-    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+    snacks = Snack.query.order_by(Snack.timestamp.desc()).paginate(
+        page=page, per_page=app.config['SNACKS_PER_PAGE'], error_out=False)
+    next_url = url_for('index', page=snacks.next_num) if snacks.has_next else None
+    prev_url = url_for('index', page=snacks.prev_num) if snacks.has_prev else None
+    return render_template('index.html', title='Home', snacks=snacks.items, next_url=next_url, prev_url=prev_url)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -135,8 +125,34 @@ def unfollow(username):
 @login_required
 def explore():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
-    next_url = url_for('explore', page=posts.next_num) if posts.has_next else None
-    prev_url = url_for('explore', page=posts.prev_num) if posts.has_prev else None
-    return render_template('index.html', title='Explore', posts=posts.items, next_url=next_url, prev_url=prev_url)
+    snacks = Snack.query.paginate(page=page, per_page=app.config['SNACKS_PER_PAGE'], error_out=False)
+    next_url = url_for('explore', page=snacks.next_num) if snacks.has_next else None
+    prev_url = url_for('explore', page=snacks.prev_num) if snacks.has_prev else None
+    return render_template('explore.html', title='Explore', snacks=snacks.items, next_url=next_url, prev_url=prev_url)
+
+
+@app.route('/add_snack', methods=['GET', 'POST'])
+@login_required
+def add_snack():
+    form = SnackForm()
+    if form.validate_on_submit():
+        snack = Snack(name=form.name.data, description=form.description.data, category=form.category.data, user_id=current_user.id)
+        db.session.add(snack)
+        db.session.commit()
+        flash('Snack successfully added!')
+        return redirect(url_for('index'))
+    return render_template('add_snack.html', title='Add Snack', form=form)
+
+@app.route('/snack/<int:snack_id>', methods=['GET', 'POST'])
+@login_required
+def snack(snack_id):
+    snack = Snack.query.get_or_404(snack_id)
+    form = RatingForm()
+    if form.validate_on_submit():
+        rating = Rating(rating=form.rating.data, comment=form.comment.data, rater=current_user, snack=snack)
+        db.session.add(rating)
+        db.session.commit()
+        flash('Your rating has been added!')
+        return redirect(url_for('snack', snack_id=snack_id))
+    ratings = Rating.query.filter_by(snack_id=snack.id).all()
+    return render_template('snack.html', snack=snack, form=form, ratings=ratings)

@@ -1,0 +1,38 @@
+<!-- app/templates/snack.html -->
+{% extends "base.html" %}
+{% block app_content %}
+<h2>{{ snack.name }}</h2>
+<p>{{ snack.description }}</p>
+<p>Category: {{ snack.category }}</p>
+
+<h3>Ratings</h3>
+{% for rating in ratings %}
+    <p>Rating: {{ rating.rating }} - "{{ rating.comment }}" by {{ rating.rater.username }}</p>
+{% endfor %}
+
+<h3>Leave a Rating</h3>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.rating.label(class="form-control-label") }}
+        {{ form.rating(class="form-control") }}
+        {% if form.rating.errors %}
+        {% for error in form.rating.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.comment.label(class="form-control-label") }}
+        {{ form.comment(class="form-control") }}
+        {% if form.comment.errors %}
+        {% for error in form.comment.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div>
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
+{% endblock %}

@@ -1,6 +1,6 @@
 #app/forms.py
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, IntegerField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from app.models import User
 
@@ -48,3 +48,14 @@ class EmptyForm(FlaskForm):
 class PostForm(FlaskForm):
     post = TextAreaField('Say something', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class SnackForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[DataRequired(), Length(min=0, max=140)])
+    category = StringField('Category', validators=[DataRequired()])
+    submit = SubmitField('Add Snack')
+
+class RatingForm(FlaskForm):
+    rating = IntegerField('Rating', validators=[DataRequired()])
+    comment = TextAreaField('Comment', validators=[Length(min=0, max=140)])
+    submit = SubmitField('Submit Rating')

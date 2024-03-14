@@ -14,4 +14,4 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER')
     ADMINS = ['admin@does.not.exist.com']
-    POSTS_PER_PAGE = 25
+    SNACKS_PER_PAGE = 25

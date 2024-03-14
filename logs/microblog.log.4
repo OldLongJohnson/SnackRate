@@ -1,4 +1,4 @@
-2024-03-14 16:37:55,663 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+2024-03-14 17:53:40,394 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,28 +12,24 @@ Traceback (most recent call last):
     return current_app.ensure_sync(func)(*args, **kwargs)
   File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
     return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
-    return _render(app, template, context)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
-    rv = template.render(context)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 2, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 20, in top-level template code
-    <a href="{{ url_for('search') }}">Search</a>
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1697, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1686, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 950, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'search'. Did you mean 'user' instead?
-2024-03-14 16:38:15,180 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
-2024-03-14 16:42:50,132 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
-2024-03-14 16:42:53,413 ERROR: Exception on /explore [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in template
+    {% wtf.quick_form(form) %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'wtf'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+2024-03-14 17:53:42,093 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -45,60 +41,53 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 137, in explore
-    page = request.args('page', 1, type=int)
-TypeError: 'ImmutableMultiDict' object is not callable
-2024-03-14 16:45:31,176 ERROR: Exception on /explore [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 137, in explore
-    page = request.args('page', 1, type=int)
-TypeError: 'ImmutableMultiDict' object is not callable
-2024-03-14 16:47:54,926 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:29]
-2024-03-14 17:03:26,581 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 17:06:55,805 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 17:27:46,540 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 17:32:34,804 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 17:37:02,787 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 17:43:52,022 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 17:43:59,691 ERROR: Exception on /edit_profile [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 98, in edit_profile
-    return render_template('edit_profile.html', title='Edit Profile', form=form)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
-    return _render(app, template, context)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
-    rv = template.render(context)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
+    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "/Users/gavino/ifa/tutorial/app/templates/edit_profile.html", line 2, in top-level template code
-    {% import "bootstrap_wtf.html" as wtf %}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 64, in get_source
-    return self._get_source_fast(environment, template)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 98, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: bootstrap_wtf.html
-2024-03-14 17:44:07,099 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 17:49:06,629 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 17:53:37,994 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in template
+    {% wtf.quick_form(form) %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'wtf'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+2024-03-14 17:53:42,837 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+Traceback (most recent call last):
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
+    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in template
+    {% wtf.quick_form(form) %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'wtf'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
