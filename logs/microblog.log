@@ -1,4 +1,4 @@
-2024-03-14 18:54:47,288 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+2024-03-14 19:41:45,545 ERROR: Exception on /user/felix2 [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -10,105 +10,32 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 23, in index
-    posts = current_user.followed_posts().paginate(
-AttributeError: 'User' object has no attribute 'followed_posts'
-2024-03-14 18:57:41,198 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 18:58:04,988 ERROR: Exception on /snack/1 [POST] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 152, in snack
-    rating = Rating(rating=form.rating.data, comment=form.comment.data, rater=current_user, snack=snack)
-  File "<string>", line 4, in __init__
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 566, in _initialize_instance
-    with util.safe_reraise():
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
-    raise exc_value.with_traceback(exc_tb)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 564, in _initialize_instance
-    manager.original_init(*mixed[1:], **kwargs)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/decl_base.py", line 2134, in _declarative_constructor
-    raise TypeError(
-TypeError: 'snack' is an invalid keyword argument for Rating
-2024-03-14 18:59:05,785 ERROR: Exception on /snack/2 [POST] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 152, in snack
-    rating = Rating(rating=form.rating.data, comment=form.comment.data, rater=current_user, snack=snack)
-  File "<string>", line 4, in __init__
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 566, in _initialize_instance
-    with util.safe_reraise():
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
-    raise exc_value.with_traceback(exc_tb)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 564, in _initialize_instance
-    manager.original_init(*mixed[1:], **kwargs)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/decl_base.py", line 2134, in _declarative_constructor
-    raise TypeError(
-TypeError: 'snack' is an invalid keyword argument for Rating
-2024-03-14 19:00:27,749 ERROR: Exception on /snack/2 [POST] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 152, in snack
-    rating = Rating(rating=form.rating.data, comment=form.comment.data, rater=current_user, snack=snack)
-  File "<string>", line 4, in __init__
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 566, in _initialize_instance
-    with util.safe_reraise():
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
-    raise exc_value.with_traceback(exc_tb)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 564, in _initialize_instance
-    manager.original_init(*mixed[1:], **kwargs)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/decl_base.py", line 2134, in _declarative_constructor
-    raise TypeError(
-TypeError: 'snack' is an invalid keyword argument for Rating
-2024-03-14 19:01:32,388 ERROR: Exception on /snack/3 [POST] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 152, in snack
-    rating = Rating(rating=form.rating.data, comment=form.comment.data, rater=current_user, snack=snack)
-  File "<string>", line 4, in __init__
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 566, in _initialize_instance
-    with util.safe_reraise():
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
-    raise exc_value.with_traceback(exc_tb)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/state.py", line 564, in _initialize_instance
-    manager.original_init(*mixed[1:], **kwargs)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/sqlalchemy/orm/decl_base.py", line 2134, in _declarative_constructor
-    raise TypeError(
-TypeError: 'snack' is an invalid keyword argument for Rating
-2024-03-14 19:05:49,978 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
-2024-03-14 19:12:15,702 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 67, in user
+    return render_template('user.html', user=user, posts=posts, form=form)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
+    return _render(app, template, context)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
+    rv = template.render(context)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/gavino/ifa/tutorial/app/templates/user.html", line 2, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 54, in block 'content'
+    {% block app_content %}{% endblock %}
+  File "/Users/gavino/ifa/tutorial/app/templates/user.html", line 10, in block 'app_content'
+    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'app.models.User object' has no attribute 'followers'
