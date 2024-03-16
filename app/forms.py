@@ -59,3 +59,7 @@ class RatingForm(FlaskForm):
     rating = SelectField('Rating', choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')], validators=[DataRequired()])
     comment = TextAreaField('Comment', validators=[Length(min=0, max=140)])
     submit = SubmitField('Submit Rating')
+
+class SearchForm(FlaskForm):
+    q = StringField('Search for snacks', validators=[DataRequired()])
+    submit = SubmitField('Search')

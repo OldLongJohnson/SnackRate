@@ -1,19 +1,43 @@
 <!-- app/templates/explore.html -->
 {% extends "base.html" %}
+
 {% block app_content %}
+<div class="search-form">
+    <form action="{{ url_for('explore') }}" method="get">
+        <div class="form-group">
+            <input type="text" name="q" value="{{ request.args.get('q', '') }}" placeholder="Search for snacks..." class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
 <h2>Explore Snacks</h2>
-<ul>
-    {% for snack in snacks %}
-    <li>
-        <a href="{{ url_for('snack', snack_id=snack.id) }}">{{ snack.name }}</a>
-        - Submitted by {{ snack.author.username }} on {{ snack.timestamp }}
-    </li>
-    {% endfor %}
-</ul>
-{% if prev_url %}
-    <a href="{{ prev_url }}">Previous</a>
-{% endif %}
-{% if next_url %}
-    <a href="{{ next_url }}">Next</a>
+{% if snacks %}
+    <ul class="list-unstyled">
+        {% for snack in snacks %}
+        <li>
+            <strong><a href="{{ url_for('snack', snack_id=snack.id) }}">{{ snack.name }}</a></strong>
+            <br>
+            Submitted by {{ snack.author.username }} on {{ snack.timestamp.strftime('%Y-%m-%d %H:%M') }}
+            <br>
+            Category: {{ snack.category }}
+            <br>
+            Not rated yet
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+    <nav>
+        <ul class="pagination">
+            {% if snacks.has_prev %}
+                <li class="page-item"><a class="page-link" href="{{ url_for('explore', page=snacks.prev_num, q=request.args.get('q', '')) }}">Previous</a></li>
+            {% endif %}
+            {% if snacks.has_next %}
+                <li class="page-item"><a class="page-link" href="{{ url_for('explore', page=snacks.next_num, q=request.args.get('q', '')) }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% else %}
+    <p>No snacks found!</p>
 {% endif %}
 {% endblock %}

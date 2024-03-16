@@ -1,7 +1,7 @@
 # app/routes.py
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm, SnackForm, RatingForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm, SnackForm, RatingForm, SearchForm
 from app.models import User, Snack, Rating
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -121,14 +121,24 @@ def unfollow(username):
         else:
             return redirect(url_for('index'))
 
-@app.route('/explore')
+@app.route('/explore', methods=['GET', 'POST'])
 @login_required
 def explore():
+    search_form = SearchForm()
     page = request.args.get('page', 1, type=int)
-    snacks = Snack.query.paginate(page=page, per_page=app.config['SNACKS_PER_PAGE'], error_out=False)
-    next_url = url_for('explore', page=snacks.next_num) if snacks.has_next else None
-    prev_url = url_for('explore', page=snacks.prev_num) if snacks.has_prev else None
-    return render_template('explore.html', title='Explore', snacks=snacks.items, next_url=next_url, prev_url=prev_url)
+    search_query = request.args.get('q', '')
+
+    if search_query:
+        snacks = Snack.query.filter(Snack.name.like(f'%{search_query}%') | Snack.category.like(f'%{search_query}%')).paginate(
+            page=page, per_page=app.config['SNACKS_PER_PAGE'], error_out=False)
+    else:
+        snacks = Snack.query.order_by(Snack.timestamp.desc()).paginate(
+            page=page, per_page=app.config['SNACKS_PER_PAGE'], error_out=False)
+
+    next_url = url_for('explore', page=snacks.next_num, q=search_query) if snacks.has_next else None
+    prev_url = url_for('explore', page=snacks.prev_num, q=search_query) if snacks.has_prev else None
+
+    return render_template('explore.html', title='Explore', snacks=snacks.items, next_url=next_url, prev_url=prev_url, search_query=search_query)
 
 
 @app.route('/add_snack', methods=['GET', 'POST'])

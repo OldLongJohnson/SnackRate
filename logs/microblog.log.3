@@ -1,4 +1,4 @@
-2024-03-14 17:54:38,432 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+2024-03-14 17:54:40,114 ERROR: Exception on /explore [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -10,8 +10,8 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
-    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 142, in explore
+    return render_template('index.html', title='Explore', posts=posts.items, next_url=next_url, prev_url=prev_url)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
     return _render(app, template, context)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
@@ -34,12 +34,24 @@ Traceback (most recent call last):
     {% block content -%}
   File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 53, in block 'content'
     {% block app_content %}{% endblock %}
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in block 'app_content'
-    {{ wtf.quick_form(form) }}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 485, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'wtf' is undefined
-2024-03-14 17:54:38,455 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 9, in block 'app_content'
+    {% include '_post.html' %}
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 64, in get_source
+    return self._get_source_fast(environment, template)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: _post.html
+2024-03-14 17:57:44,197 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:06:21,459 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:06:51,110 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:08:24,229 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:18:45,781 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:19:46,642 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:30:49,196 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:32:42,522 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:32:48,533 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:49:32,281 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
+2024-03-14 18:49:39,413 ERROR: Exception on / [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -51,36 +63,10 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
-    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
-    return _render(app, template, context)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
-    rv = template.render(context)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
-    {%- block html %}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
-    {% block body -%}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
-    {% block content -%}
-  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 53, in block 'content'
-    {% block app_content %}{% endblock %}
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in block 'app_content'
-    {{ wtf.quick_form(form) }}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 485, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'wtf' is undefined
-2024-03-14 17:54:39,587 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 23, in index
+    posts = current_user.followed_posts().paginate(
+AttributeError: 'User' object has no attribute 'followed_posts'
+2024-03-14 18:49:42,180 ERROR: Exception on /index [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -92,32 +78,37 @@ Traceback (most recent call last):
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
   File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/gavino/ifa/tutorial/app/routes.py", line 29, in index
-    return render_template('index.html', title='Home Page', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 151, in render_template
-    return _render(app, template, context)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/templating.py", line 132, in _render
-    rv = template.render(context)
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
-    {%- block html %}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
-    {% block body -%}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
-    {% block content -%}
-  File "/Users/gavino/ifa/tutorial/app/templates/base.html", line 53, in block 'content'
-    {% block app_content %}{% endblock %}
-  File "/Users/gavino/ifa/tutorial/app/templates/index.html", line 5, in block 'app_content'
-    {{ wtf.quick_form(form) }}
-  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/jinja2/environment.py", line 485, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'wtf' is undefined
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 23, in index
+    posts = current_user.followed_posts().paginate(
+AttributeError: 'User' object has no attribute 'followed_posts'
+2024-03-14 18:50:02,837 ERROR: Exception on /explore [GET] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+Traceback (most recent call last):
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 138, in explore
+    snacks = Snack.query.paginate(page=page, per_page=app.config['SNACKS_PER_PAGE'], error_out=False)
+NameError: name 'Snack' is not defined
+2024-03-14 18:51:14,216 ERROR: Exception on /add_snack [POST] [in /Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py:1414]
+Traceback (most recent call last):
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/gavino/ifa/tutorial/myenv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/Users/gavino/ifa/tutorial/app/routes.py", line 149, in add_snack
+    snack = Snack(name=form.name.data, description=form.description.data, category=form.category.data, author=current_user)
+NameError: name 'Snack' is not defined
+2024-03-14 18:54:22,973 INFO: Microblog startup [in /Users/gavino/ifa/tutorial/app/__init__.py:31]
