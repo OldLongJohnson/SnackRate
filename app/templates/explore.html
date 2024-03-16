@@ -22,7 +22,7 @@
             <br>
             Category: {{ snack.category }}
             <br>
-            Not rated yet
+            Average Rating: {{ snack.average_rating()|round(2, 'floor') if snack.average_rating() else "No ratings yet" }}
             <hr>
         </li>
         {% endfor %}

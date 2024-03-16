@@ -5,6 +5,19 @@
 <p>{{ snack.description }}</p>
 <p>Category: {{ snack.category }}</p>
 
+<!-- Durchschnittsbewertung anzeigen -->
+<p>Average Rating: {{ snack.average_rating()|round(2, 'floor') if snack.average_rating() else "No ratings yet" }}</p>
+
+<!-- Favoriten-Button -->
+{% if current_user.is_authenticated %}
+    <form action="{{ url_for('favorite', snack_id=snack.id) if snack not in current_user.favorited_snacks else url_for('unfavorite', snack_id=snack.id) }}" method="post">
+        {{ form.hidden_tag() }}
+        <button type="submit" class="btn {{ 'btn-outline-danger' if snack in current_user.favorited_snacks else 'btn-outline-primary' }}">
+            {{ 'Unfavorite' if snack in current_user.favorited_snacks else 'Favorite' }}
+        </button>
+    </form>
+{% endif %}
+
 <h3>Ratings</h3>
 {% for rating in ratings %}
     <p>Rating: {{ rating.rating }} - "{{ rating.comment }}" by {{ rating.rater.username }}</p>
@@ -15,7 +28,7 @@
     {{ form.hidden_tag() }}
     <div class="form-group">
         {{ form.rating.label(class="form-control-label") }}
-        {{ form.rating(class="form-control") }}  <!-- Dies erzeugt ein Dropdown-Menü für die Bewertung -->
+        {{ form.rating(class="form-control") }}
         {% if form.rating.errors %}
         {% for error in form.rating.errors %}
         <span style="color: red;">[{{ error }}]</span>

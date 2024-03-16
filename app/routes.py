@@ -16,7 +16,9 @@ def index():
         page=page, per_page=app.config['SNACKS_PER_PAGE'], error_out=False)
     next_url = url_for('index', page=snacks.next_num) if snacks.has_next else None
     prev_url = url_for('index', page=snacks.prev_num) if snacks.has_prev else None
-    return render_template('index.html', title='Home', snacks=snacks.items, next_url=next_url, prev_url=prev_url)
+    snacks_per_page = app.config['SNACKS_PER_PAGE']  # Neuer Code
+    return render_template('index.html', title='Home', snacks=snacks.items, next_url=next_url, prev_url=prev_url, snacks_per_page=snacks_per_page)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -87,39 +89,37 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile', form=form)
 
-@app.route('/follow/<username>', methods=['POST'])
+@app.route('/favorite/<int:snack_id>', methods=['POST'])
 @login_required
-def follow(username):
+def favorite(snack_id):
     form = EmptyForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=username).first()
-        if user is None:
-            flash('User {} not found.'.format(username))
+        snack = Snack.query.get(snack_id)
+        if snack is None:
+            flash('Snack not found.')
             return redirect(url_for('index'))
-        if user == current_user:
-            flash('You cannot follow yourself you self loving fucker!')
-            return redirect(url_for('user', username=username))
-        current_user.follow(user)
+        current_user.favorite_snack(snack)  # Methode geändert
         db.session.commit()
-        flash('You are following {}!'.format(username))
-        return redirect(url_for('user', username=username))
+        flash('You have favorited {}!'.format(snack.name))
+        return redirect(url_for('explore'))
     else:
         return redirect(url_for('index'))
-    
-@app.route('/unfollow/<username>', methods=['POST'])
+
+@app.route('/unfavorite/<int:snack_id>', methods=['POST'])
 @login_required
-def unfollow(username):
+def unfavorite(snack_id):
     form = EmptyForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=username).first()
-        if user is None:
-            flash('User {} not found.'.format(username))
+        snack = Snack.query.get(snack_id)
+        if snack is None:
+            flash('Snack not found.')
             return redirect(url_for('index'))
-        if user == current_user():
-            flash('You cannot unfollow yourself, remember you are your best friend!')
-            return redirect(url_for('user', username=username))
-        else:
-            return redirect(url_for('index'))
+        current_user.unfavorite_snack(snack)  # Methode geändert
+        db.session.commit()
+        flash('You have unfavorited {}.'.format(snack.name))
+        return redirect(url_for('explore'))
+    else:
+        return redirect(url_for('index'))
 
 @app.route('/explore', methods=['GET', 'POST'])
 @login_required
