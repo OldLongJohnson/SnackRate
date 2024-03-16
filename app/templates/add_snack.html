@@ -1,38 +1,55 @@
 <!-- app/templates/add_snack.html -->
+<!-- Erweiterung des base.html Layouts für konsistentes Aussehen der Anwendung -->
 {% extends "base.html" %}
+
 {% block app_content %}
-<h2>Add a New Snack</h2>
-<form action="" method="post" novalidate>
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-        {{ form.name.label(class="form-control-label") }}
-        {{ form.name(class="form-control") }}
-        {% if form.name.errors %}
-        {% for error in form.name.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-        {% endif %}
-    </div>
-    <div class="form-group">
-        {{ form.description.label(class="form-control-label") }}
-        {{ form.description(class="form-control") }}
-        {% if form.description.errors %}
-        {% for error in form.description.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-        {% endif %}
-    </div>
-    <div class="form-group">
-        {{ form.category.label(class="form-control-label") }}
-        {{ form.category(class="form-control") }}
-        {% if form.category.errors %}
-        {% for error in form.category.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-        {% endif %}
-    </div>
-    <div>
-        {{ form.submit(class="btn btn-primary") }}
-    </div>
-</form>
+    <!-- Überschrift für die Seite, um dem Benutzer klar zu machen, dass hier ein neuer Snack hinzugefügt werden kann -->
+    <h2>Add a New Snack</h2>
+    
+    <!-- Formular für das Hinzufügen eines neuen Snacks. POST-Methode wird verwendet, um die Daten sicher an den Server zu senden -->
+    <form action="" method="post" novalidate>
+        <!-- CSRF-Token zur Vermeidung von Cross-Site Request Forgery Angriffen -->
+        {{ form.hidden_tag() }}
+        
+        <!-- Formularfeld für den Namen des Snacks -->
+        <div class="form-group">
+            {{ form.name.label(class="form-control-label") }}
+            {{ form.name(class="form-control") }}
+            <!-- Anzeigen von Validierungsfehlern für das Namensfeld -->
+            {% if form.name.errors %}
+            {% for error in form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        <!-- Formularfeld für die Beschreibung des Snacks -->
+        <div class="form-group">
+            {{ form.description.label(class="form-control-label") }}
+            {{ form.description(class="form-control") }}
+            <!-- Anzeigen von Validierungsfehlern für das Beschreibungsfeld -->
+            {% if form.description.errors %}
+            {% for error in form.description.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        <!-- Formularfeld für die Kategorie des Snacks -->
+        <div class="form-group">
+            {{ form.category.label(class="form-control-label") }}
+            {{ form.category(class="form-control") }}
+            <!-- Anzeigen von Validierungsfehlern für das Kategoriefeld -->
+            {% if form.category.errors %}
+            {% for error in form.category.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        <!-- Absendeknopf für das Formular -->
+        <div>
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
 {% endblock %}

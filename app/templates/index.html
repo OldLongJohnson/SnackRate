@@ -1,25 +1,34 @@
+<!-- Basislayout erweitern, um ein einheitliches Aussehen zu gewährleisten -->
 {% extends "base.html" %}
-{% block app_content %}
-<h1>Hi, {{ current_user.username }}!</h1>
 
-<h2>Your Favorites</h2>
-{% if current_user.favorited_snacks %}
-    <ul class="list-unstyled">
-        {% for snack in current_user.favorited_snacks.limit(snacks_per_page).all() %}
-        <li>
-            <strong><a href="{{ url_for('snack', snack_id=snack.id) }}">{{ snack.name }}</a></strong>
-            - Category: {{ snack.category }}
-            <br>
-            Submitted on {{ snack.timestamp.strftime('%Y-%m-%d %H:%M') }}
-            {% if snack.favorited_by %}
+{% block app_content %}
+    <!-- Begrüßung des angemeldeten Benutzers -->
+    <h1>Hi, {{ current_user.username }}!</h1>
+
+    <!-- Abschnitt für favorisierte Snacks des Benutzers -->
+    <h2>Your Favorites</h2>
+    {% if current_user.favorited_snacks %}
+        <ul class="list-unstyled">
+            <!-- Schleife durch die favorisierten Snacks des Benutzers -->
+            {% for snack in current_user.favorited_snacks.limit(snacks_per_page).all() %}
+            <li>
+                <!-- Snack-Name als Link zur Detailansicht des Snacks -->
+                <strong><a href="{{ url_for('snack', snack_id=snack.id) }}">{{ snack.name }}</a></strong>
+                - Category: {{ snack.category }}
                 <br>
-                Favorited by {{ snack.favorited_by.count() }} users
-            {% endif %}
-            <hr>
-        </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>You have no favorite snacks yet.</p>
-{% endif %}
+                <!-- Datum der Snack-Einreichung -->
+                Submitted on {{ snack.timestamp.strftime('%Y-%m-%d %H:%M') }}
+                {% if snack.favorited_by %}
+                    <br>
+                    <!-- Anzahl der Benutzer, die diesen Snack favorisiert haben -->
+                    Favorited by {{ snack.favorited_by.count() }} users
+                {% endif %}
+                <hr>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <!-- Nachricht, wenn der Benutzer noch keine Snacks favorisiert hat -->
+        <p>You have no favorite snacks yet.</p>
+    {% endif %}
 {% endblock %}

@@ -1,7 +1,8 @@
-<!-- app/templates/explore.html -->
+<!-- Erweiterung des Basislayouts für einheitliche Darstellung -->
 {% extends "base.html" %}
 
 {% block app_content %}
+<!-- Suchformular, um Snacks nach Namen oder Kategorie zu durchsuchen -->
 <div class="search-form">
     <form action="{{ url_for('explore') }}" method="get">
         <div class="form-group">
@@ -11,6 +12,7 @@
     </form>
 </div>
 
+<!-- Auflistung der Snacks mit Suchergebnissen -->
 <h2>Explore Snacks</h2>
 {% if snacks %}
     <ul class="list-unstyled">
@@ -27,6 +29,7 @@
         </li>
         {% endfor %}
     </ul>
+    <!-- Paginierung für die Navigation durch die Suchergebnisse -->
     <nav>
         <ul class="pagination">
             {% if snacks.has_prev %}

@@ -1,35 +1,42 @@
-<!-- app/templates/user.html, 1. Version -->
+<!-- Erweitert das Basislayout für einheitliche Gestaltung -->
 {% extends "base.html" %}
+
 {% block app_content %}
-    <table>
-        <tr valign="top">
-            <td><img src="{{ user.avatar(128) }}"></td>
-            <td><h1>User: {{ user.username }}</h1>
-            {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-            {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
-            <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
-            {% if user == current_user %}
+    <!-- Anzeige des Benutzerprofils -->
+    <div class="user-profile">
+        <!-- Benutzeravatar -->
+        <img src="{{ user.avatar(128) }}" alt="User Avatar">
+        <h1>User: {{ user.username }}</h1>
+        <!-- Über mich und letzte Sichtung, wenn vorhanden -->
+        {% if user.about_me %}
+            <p>{{ user.about_me }}</p>
+        {% endif %}
+        {% if user.last_seen %}
+            <p>Last seen on: {{ user.last_seen.strftime('%Y-%m-%d %H:%M') }}</p>
+        {% endif %}
+        <!-- Link zur Profilbearbeitung für den aktuellen Benutzer -->
+        {% if user == current_user %}
             <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
-            {% elif not current_user.is_following(user) %}
-            <p>
-                <form action="{{ url_for('follow', username=user.username) }}" method="post">
-                    {{ form.hidden_tag() }}
-                    {{ form.submit(value='Follow') }}
-                </form>
-            </p>
-            {% else %}
-            <p>
-                <form action="{{ url_for('unfollow', username=user.username) }}" method="post">
-                    {{ form.hidden_tag() }}
-                    {{ form.submit(value='Unfollow') }}  
-                </form>
-            </p>
-            {% endif %}
-            </td>
-        </tr>
-    </table>
-    <hr>
-    {% for post in posts %}
-        {% include '_posts.html' %}
-    {% endfor %}
+        {% endif %}
+    </div>
+    
+    <!-- Anzeige der vom Benutzer favorisierten Snacks -->
+    <h2>{{ user.username }}'s Favorites</h2>
+    {% if user.favorited_snacks %}
+        <ul class="list-unstyled">
+            {% for snack in user.favorited_snacks %}
+                <li>
+                    <!-- Name, Kategorie und durchschnittliche Bewertung jedes favorisierten Snacks -->
+                    <strong><a href="{{ url_for('snack', snack_id=snack.id) }}">{{ snack.name }}</a></strong>
+                    <br>
+                    Category: {{ snack.category }}
+                    <br>
+                    Average Rating: {{ snack.average_rating()|round(2, 'floor') if snack.average_rating() else "No ratings yet" }}
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{{ user.username }} has no favorite snacks yet.</p>
+    {% endif %}
 {% endblock %}

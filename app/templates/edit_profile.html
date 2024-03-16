@@ -1,23 +1,35 @@
-<!-- app/templates/edit_profile.html -->
+<!-- Erweiterung des Basislayouts für einheitliche Gestaltung -->
 {% extends "base.html" %}
+
 {% block app_content %}
+    <!-- Überschrift der Seite -->
     <h1>Edit Profile</h1>
+    
+    <!-- Profilbearbeitungsformular -->
     <form action="" method="post">
-        {{ form.hidden_tag() }}
+        {{ form.hidden_tag() }} <!-- CSRF-Schutz -->
+        
+        <!-- Benutzernamenfeld -->
         <p>
             {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.error %}
-            <span stlye="color: red;">[{{ error }}]</span>
+            {{ form.username(size=32) }} <!-- Eingabefeld für den Benutzernamen -->
+            <!-- Fehlermeldungen für Benutzernamen -->
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        
+        <!-- Feld für 'Über mich'-Text -->
         <p>
             {{ form.about_me.label }}<br>
-            {{ form.about_me(cols=50, rows=4) }}<br>
+            {{ form.about_me(cols=50, rows=4) }} <!-- Textbereich für 'Über mich' -->
+            <!-- Fehlermeldungen für 'Über mich' -->
             {% for error in form.about_me.errors %}
-            <span stlye="color: red;">[{{ error }}]</span>
+            <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        
+        <!-- Absendebutton -->
         <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}
