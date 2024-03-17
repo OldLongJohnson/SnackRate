@@ -47,6 +47,17 @@ class User(UserMixin, db.Model):
 
     def has_favorited(self, snack):
         return self.favorited_snacks.filter(favorites.c.snack_id == snack.id).count() > 0
+    
+    # Für Verwendung von APIs
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'about_me': self.about_me,
+            'last_seen': self.last_seen.isoformat() + 'Z',
+            'favorited_snacks': [snack.to_dict() for snack in self.favorited_snacks]
+        }
 
 class Snack(db.Model):
     # Snackmodell mit Attributen und durchschnittlicher Bewertungsfunktion
@@ -60,6 +71,17 @@ class Snack(db.Model):
     # Berechnet die durchschnittliche Bewertung eines Snacks
     def average_rating(self):
         return db.session.query(func.avg(Rating.rating)).filter(Rating.snack_id == self.id).scalar()
+    
+    # Für Verwendung von APIs
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'category': self.category,
+            'timestamp': self.timestamp.isoformat() + 'Z',
+            'average_rating': self.average_rating()
+        }
 
 class Rating(db.Model):
     # Bewertungsmodell mit Beziehungen zu User und Snack

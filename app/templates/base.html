@@ -1,9 +1,8 @@
 <!-- Erweiterung des Bootstrap-Grundlayouts, um konsistente Styles und Skripte zu nutzen -->
 {% extends 'bootstrap/base.html' %}
 
-<!-- Definition des Titel-Blocks, um dynamische Seitentitel zu setzen -->
+
 {% block title %}
-    <!-- Wenn ein Titel vorhanden ist, füge ihn zum Standard-Seitentitel hinzu -->
     {% if title %}{{ title }} - SnackRate{% else %}Welcome to SnackRate{% endif %}
 {% endblock %}
 
