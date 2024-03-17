@@ -18,4 +18,6 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER')
     ADMINS = ['admin@does.not.exist.com']
+    TOKEN_EXPIRATION_DAYS = 7
+    TOKEN_EXPIRATION_SECONDS = 0  
     SNACKS_PER_PAGE = 25
